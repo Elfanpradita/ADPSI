@@ -1,0 +1,28 @@
+@startuml
+
+entity "Mahasiswa" as Mahasiswa {
+    * NIM : String
+    --
+    Nama : String
+    Jurusan : String
+}
+
+entity "MataKuliah" as MataKuliah {
+    * KodeMK : String
+    --
+    NamaMK : String
+    SKS : int
+}
+
+entity "KRS" as KRS {
+    * ID_KRS : String
+    --
+    NIM : String <<FK>>
+    KodeMK : String <<FK>>
+    SKS : int
+}
+
+Mahasiswa ||--o{ KRS : "mengambil"
+MataKuliah ||--o{ KRS : "terdaftar"
+
+@enduml
