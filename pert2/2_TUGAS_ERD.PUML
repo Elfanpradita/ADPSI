@@ -1,0 +1,37 @@
+@startuml
+
+entity BARANG {
+    +ID_Barang (PK)
+    Nama_Barang
+    Harga
+    Stok
+    ID_Pemasok (FK)
+}
+
+entity KONSUMEN {
+    +ID_Konsumen (PK)
+    Nama_Konsumen
+    Alamat
+    Telepon
+}
+
+entity PEMASOK_BARANG {
+    +ID_Pemasok (PK)
+    Nama_Pemasok
+    Alamat
+    Telepon
+}
+
+entity TRANSAKSI {
+    +ID_Transaksi (PK)
+    ID_Konsumen (FK)
+    ID_Barang (FK)
+    Tanggal_Transaksi
+    Jumlah
+}
+
+BARANG ||--o{ TRANSAKSI : Dijual
+KONSUMEN ||--o{ TRANSAKSI : Membeli
+PEMASOK_BARANG ||--o{ BARANG : Menyediakan
+
+@enduml

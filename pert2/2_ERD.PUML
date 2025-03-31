@@ -1,0 +1,53 @@
+@startuml
+
+entity Mahasiswa_Lama {
+    +NIM (PK)
+    Nama
+    Alamat
+    Telepon
+}
+
+entity Mahasiswa_Baru {
+    +No_Pendaftaran (PK)
+    Nama
+    Alamat
+    Telepon
+}
+
+entity BAA {
+    +Data_Mahasiswa (PK)
+    NIM (PFK)
+    No_Pendaftaran (PFK)
+}
+
+entity Pembayaran_Kuliah {
+    +Total_pembayaran (PK)
+    Data_Mahasiswa (PFK)
+    NIM (PFK)
+    No_Pendaftaran (PFK)
+}
+
+entity Pendaftaran_Mahasiswa_Baru {
+    +Total_pembayaran (PK)
+    Data_Mahasiswa (PFK)
+    NIM (PFK)
+    No_Pendaftaran (PFK)
+}
+
+entity Fakultas {
+    +Kode_Fakultas (PK)
+    Nama_Fakultas
+    Total_pembayaran (PFK)
+    Data_Mahasiswa (PFK)
+    NIM (PFK)
+    No_Pendaftaran (PFK)
+}
+
+Mahasiswa_Lama ||--o{ BAA : Pendaftaran
+Mahasiswa_Baru ||--o{ BAA : Pendaftaran
+BAA ||--o{ Pembayaran_Kuliah : Pembayaran
+BAA ||--o{ Pendaftaran_Mahasiswa_Baru : Pembayaran
+Pembayaran_Kuliah ||--o{ Fakultas : Penjadwalan/Perkuliahan
+Pendaftaran_Mahasiswa_Baru ||--o{ Fakultas : Penjadwalan/Perkuliahan
+
+@enduml
